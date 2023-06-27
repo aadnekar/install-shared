@@ -1,10 +1,27 @@
 use std::{env, path::Path, process::{Command, exit, abort}};
+use clap::Parser;
+use install_shared::options::SharedOptions;
 
-fn main() {
+use anyhow::Result;
+
+fn main() -> Result<()> {
+    let opts: SharedOptions = SharedOptions::parse().try_into()?;
+    println!("{:?}", opts);
+
     let shared_workspace = env::var("SharedWorkspace").expect("Environment variable SharedWorkSpace not set.\nYou need to set up an environment variable called\"SharedWorkspace\" with path to pc-nrfconnect-shared.");
 
     println!("Shared workspace: {}", shared_workspace);
 
+    if opts.skip_types {
+        println!("Will attempt to run npm generate-types in shared workspace");
+
+        let generate_types_output = Command::new("npm").current_dir(shared_workspace.clone()).args(&["run", "generate-types"]).output().expect("failed to execute process");
+        if generate_types_output.status.success() {
+            println!("Generated types successfully");
+        } else {
+            println!("Failed to generate types");
+        }
+    }
 
     println!("Will attempt to run npm pack in shared workspace");
     let pack_output = Command::new("npm").current_dir(shared_workspace.clone()).arg("pack").output().expect("failed to execute process");
@@ -37,4 +54,5 @@ fn main() {
 
     println!("Failed to install {tarball}");
     println!("stderr: {}", String::from_utf8_lossy(&npm_install.stderr));
+    return Ok(());
 }

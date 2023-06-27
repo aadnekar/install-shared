@@ -1,11 +1,9 @@
-use std::path::PathBuf;
-
 use clap::Parser;
 
 #[derive(Parser, Debug)]
 #[clap()]
 pub struct SharedOptions {
     
-    #[clap(short = 'S', long = 'skip-types')]
-    pub skip_types: Option<PathBuf>,
+    #[clap(short = 't', long = "types", default_value = "false")]
+    pub skip_types: bool,
 }
