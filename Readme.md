@@ -2,6 +2,12 @@
 
 This is a utility script in order to easily generate types, pack and install pc-nrfconnect-shared.
 
+## Requirements
+
+- You need to set an environment variable `SharedWorkspace=<location of pc-nrfconnect-shared>`
+- You need npm installed
+- To build from source, you need cargo
+
 ## Build
 
 Build the script for release
