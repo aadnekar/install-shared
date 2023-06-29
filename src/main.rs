@@ -1,12 +1,13 @@
 use clap::Parser;
-use install_shared::options::SharedOptions;
 use std::{
     env,
     path::Path,
-    process::{abort, exit, Command},
+    process::{abort, Command},
 };
 
+mod options;
 use anyhow::Result;
+use options::SharedOptions;
 
 fn main() -> Result<()> {
     let opts: SharedOptions = SharedOptions::parse();
@@ -55,7 +56,7 @@ fn main() -> Result<()> {
         .expect("Failed to install {shared_workspace}{tarball}");
     if npm_install.status.success() {
         println!("Installed {tarball}");
-        exit(0);
+        return Ok(());
     }
 
     println!("Failed to install {tarball}");
