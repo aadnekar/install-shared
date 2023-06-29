@@ -4,6 +4,6 @@ use clap::Parser;
 #[clap()]
 pub struct SharedOptions {
     
-    #[clap(short = 't', long = "types", default_value = "false")]
-    pub skip_types: bool,
+    #[clap(short = 't', long = "types", default_value = "false", help = "Generates types using 'npm run generate-types'")]
+    pub generate_types: bool,
 }
