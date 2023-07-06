@@ -9,7 +9,9 @@ pub struct SharedOptions {
 
 #[derive(Clone, Debug, Subcommand)]
 pub enum Source {
-    #[clap(about="Installs pc-nrfconnect-shared from a local workspace defined by an environment variable called \"SharedWorkspace\"")]
+    #[clap(
+        about = "Installs pc-nrfconnect-shared from a local workspace defined by an environment variable called \"SharedWorkspace\""
+    )]
     Local {
         #[clap(
             short = 't',
@@ -20,15 +22,15 @@ pub enum Source {
         generate_types: bool,
         option: LocalOptions,
     },
-    #[clap(about="Installs pc-nrfconnect-shared from Github: https://github.com/NordicSemiconductor/pc-nrfconnect-shared")]
+    #[clap(
+        about = "Installs pc-nrfconnect-shared from Github: https://github.com/NordicSemiconductor/pc-nrfconnect-shared"
+    )]
     Github {
         #[command(subcommand)]
         option: GithubOptions,
     },
-    #[clap(about="Not Implemented")]
-    Npm {
-        option: (),
-    },
+    #[clap(about = "Not Implemented")]
+    Npm { option: () },
 }
 
 #[derive(Clone, Debug, ValueEnum)]
@@ -38,7 +40,9 @@ pub enum LocalOptions {
 
 #[derive(Clone, Debug, Subcommand)]
 pub enum GithubOptions {
-    #[clap(about="Installs pc-nrfconnect-shared from Github: https://github.com/NordicSemiconductor/pc-nrfconnect-shared")]
+    #[clap(
+        about = "Installs pc-nrfconnect-shared from Github: https://github.com/NordicSemiconductor/pc-nrfconnect-shared"
+    )]
     Install {
         #[clap(
             short = 'v',
@@ -48,9 +52,14 @@ pub enum GithubOptions {
         )]
         version: String,
     },
-    #[clap(about="Lists versions of pc-nrfconnect-shared available on Github")]
-    ListVersions {
-        #[clap(short = 'n', long = "number", help = "Number of versions to list")]
-        number: Option<usize>,
+    #[clap(about = "Lists versions of pc-nrfconnect-shared available on Github")]
+    List {
+        #[clap(
+            short = 'n',
+            long = "number",
+            default_value = "10",
+            help = "Number of versions to list"
+        )]
+        number: usize,
     },
 }
