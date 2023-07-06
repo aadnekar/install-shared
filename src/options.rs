@@ -1,11 +1,7 @@
 use clap::{Parser, Subcommand, ValueEnum};
 
 #[derive(Parser, Debug)]
-#[command(name = "Install Shared")]
-#[command(author = "Ådne Karstad <aadne.karstad@gmail.com>")]
-#[command(version = "0.0.1")]
-#[command(about = "Installs pc-nrfconnect-shared", long_about = None)]
-#[clap()]
+#[command(author, version, about, long_about = None)]
 pub struct SharedOptions {
     #[command(subcommand)]
     pub source: Source,
@@ -13,6 +9,7 @@ pub struct SharedOptions {
 
 #[derive(Clone, Debug, Subcommand)]
 pub enum Source {
+    #[clap(about="Installs pc-nrfconnect-shared from a local workspace defined by an environment variable called \"SharedWorkspace\"")]
     Local {
         #[clap(
             short = 't',
@@ -23,10 +20,12 @@ pub enum Source {
         generate_types: bool,
         option: LocalOptions,
     },
+    #[clap(about="Installs pc-nrfconnect-shared from Github: https://github.com/NordicSemiconductor/pc-nrfconnect-shared")]
     Github {
         #[command(subcommand)]
         option: GithubOptions,
     },
+    #[clap(about="Not Implemented")]
     Npm {
         option: (),
     },
@@ -39,6 +38,7 @@ pub enum LocalOptions {
 
 #[derive(Clone, Debug, Subcommand)]
 pub enum GithubOptions {
+    #[clap(about="Installs pc-nrfconnect-shared from Github: https://github.com/NordicSemiconductor/pc-nrfconnect-shared")]
     Install {
         #[clap(
             short = 'v',
@@ -48,6 +48,7 @@ pub enum GithubOptions {
         )]
         version: String,
     },
+    #[clap(about="Lists versions of pc-nrfconnect-shared available on Github")]
     ListVersions {
         #[clap(short = 'n', long = "number", help = "Number of versions to list")]
         number: Option<usize>,

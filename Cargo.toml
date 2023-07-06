@@ -1,9 +1,12 @@
 [package]
-name = "install-shared"
+name = "ishared"
 version = "0.0.2"
 edition = "2021"
+description= "CLI tool in order to make installing pc-nrfconnect-shared a breeze."
+repository="https://github.com/aadnekar/install-shared"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
 
 [dependencies]
 anyhow = "1.0.71"

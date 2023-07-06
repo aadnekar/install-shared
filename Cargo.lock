@@ -157,15 +157,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fed44880c466736ef9a5c5b5facefb5ed0785676d0c02d612db14e54f0d84286"
 
 [[package]]
-name = "install-shared"
-version = "0.0.2"
-dependencies = [
- "anyhow",
- "clap",
- "exitcode",
-]
-
-[[package]]
 name = "io-lifetimes"
 version = "1.0.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -186,6 +177,15 @@ dependencies = [
  "io-lifetimes",
  "rustix",
  "windows-sys",
+]
+
+[[package]]
+name = "ishared"
+version = "0.0.2"
+dependencies = [
+ "anyhow",
+ "clap",
+ "exitcode",
 ]
 
 [[package]]

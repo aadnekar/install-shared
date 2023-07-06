@@ -1,4 +1,4 @@
-# Install Shared
+# Install Shared (ishared)
 
 This is a utility script in order to easily generate types, pack and install pc-nrfconnect-shared.
 
@@ -21,7 +21,7 @@ cargo build --release
 Recommend to first put the executable somewhere in your PATH, e.g. on Ubuntu you can move it to `/$HOME/.local/bin`.
 
 ```bash
-cp target/release/install-shared ~/.local/bin/
+cp target/release/ishared ~/.local/bin/
 
 # Run the script inside one of the pc-nrfconnect apps:
 install-shared
